@@ -1,7 +1,10 @@
-node_modules
-dist
-.tmp
-bower_components
+/bower_components/
+/dist/
+/node_modules/
 
-fls.iml
+npm-debug.log
 .idea
+dist
+node_modules
+.DS_Store
+fls.iml
