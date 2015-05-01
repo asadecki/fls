@@ -1,3 +1,22 @@
 .jumbotron p {
     font-size: 14px;
 }
+
+.player-panel {
+    background-color: #f8f8ff;
+}
+
+.nav {
+    padding-bottom: 15px;
+}
+
+
+.container {
+    padding-top:15px;
+    padding-left : 0px;
+    padding-right :0px;
+}
+
+body {
+    background: black;
+}

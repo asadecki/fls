@@ -12,7 +12,7 @@ let Player = React.createClass({
 		if (player) {
 
 			return (
-				<Jumbotron>
+				<Jumbotron className="player-panel">
 					<p>{player.name} </p>
 					<p>Number : {player.number} </p>
 					<p>Value : {player.value} </p>

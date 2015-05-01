@@ -1,18 +1,42 @@
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var Constants = require('../constants/AppConstants');
 
-let statisticValues = {
+var statisticValues = {
     'goals': 7,
     'assists': 8,
     'both': [7, 8]
 };
 
+var seasons = {
+    "seasonFall2014": {
+        "SEASON_ID": 77,
+        "SEASON_NAME": "liga-d1-jesien-2014",
+        "TEAM_ID": 178,
+        "TEAM_NAME": "schibsted-tech-polska"
+    },
+
+    "seasonSpring2015": {
+        "SEASON_ID": 87,
+        "SEASON_NAME": "liga-d1-wiosna-2015",
+        "TEAM_ID": 178,
+        "TEAM_NAME": "schibsted-tech-polska"
+    }
+};
+
+// TODO this is shit. Each time someone sees that one panda dies
+var YAHOO_URL_TEMPLATE = "https://query.yahooapis.com/v1/public/yql?" +
+    "q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fliga-fls.pl%2Fhome%2Findex.php%3Foption%3Dcom_joomleague%26view%3Droster%26p%3DSEASON_ID%3ASEASON_NAME%26tid%3DTEAM_ID%3ATEAM_NAME%26division%3D0%26Itemid%3D567'" +
+    "&format=json" +
+    "&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+
+
 module.exports = {
 
-    getPlayers: function (valueName) {
+    getPlayers: function (seasonName, valueName) {
+
         $.ajax({
             traditional: true,
-            url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fliga-fls.pl%2Fhome%2Findex.php%3Foption%3Dcom_joomleague%26view%3Droster%26p%3D87%3Aliga-d1-wiosna-2015%26tid%3D178%3Aschibsted-tech-polska%26division%3D0%26Itemid%3D567'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys",
+            url: this.prepareYahooUrl(seasonName),
             dataType: 'jsonp',
             success: function (data) {
 
@@ -73,5 +97,14 @@ module.exports = {
             }
             return 0;
         });
+    },
+
+    prepareYahooUrl: function (seasonName) {
+        var seasonToGet = seasons[seasonName];
+        return YAHOO_URL_TEMPLATE
+            .replace("SEASON_ID", seasonToGet.SEASON_ID)
+            .replace("SEASON_NAME", seasonToGet.SEASON_NAME)
+            .replace("TEAM_ID", seasonToGet.TEAM_ID)
+            .replace("TEAM_NAME", seasonToGet.TEAM_NAME);
     }
 };

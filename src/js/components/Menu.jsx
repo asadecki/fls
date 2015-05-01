@@ -1,31 +1,46 @@
 const React = require('react');
 const ButtonGroup = require('react-bootstrap/lib/ButtonGroup');
 const Button = require('react-bootstrap/lib/Button');
+const Nav = require('react-bootstrap/lib/Nav');
+const NavItem = require('react-bootstrap/lib/NavItem');
+const Navbar = require('react-bootstrap/lib/Navbar');
+const DropdownButton = require('react-bootstrap/lib/DropdownButton');
+const MenuItem = require('react-bootstrap/lib/MenuItem');
 const PlayerAction = require('../actions/PlayerAction');
 
 
 
 let Menu = React.createClass({
 
-	handleBestStrikesClick() {
-		PlayerAction.getPlayers('goals');
+	handleClick() {
+		var season = event.target.parentElement.getAttribute('data-season');
+		var statName = event.target.parentElement.getAttribute('data-statistic-name');
+		PlayerAction.getPlayers(season,statName);
 	},
-
-	handleBestAssistsClick() {
-		PlayerAction.getPlayers('assists');
-    },
-
-    handleBestStrikesAndAssists() {
-		PlayerAction.getPlayers('both');
-    },
 
 	render() {
 		return (
-			<ButtonGroup justified>
-            	<Button onClick={this.handleBestStrikesClick} href='#'>Best strikers</Button>
-            	<Button onClick={this.handleBestAssistsClick} href='#'>Who can pass like Iniesta?</Button>
-            	<Button onClick={this.handleBestStrikesAndAssists} href='#'>Who can do both?</Button>
-	 	  	</ButtonGroup>
+			<Navbar brand='Schibsted Tech Polska' inverse>
+             	<Nav bsStyle='tabs' >
+
+					<DropdownButton title='Best Strikers'>
+						<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='goals'>Spring 2015</MenuItem>
+						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='goals'>Fall 2014</MenuItem>
+					</DropdownButton>
+
+					<DropdownButton title='Who can pass like Iniesta'>
+						<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='assists'>Spring 2015</MenuItem>
+						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='assists'>Fall 2014</MenuItem>
+					</DropdownButton>
+
+					<DropdownButton title='Who can do both'>
+						<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='both'>Spring 2015</MenuItem>
+						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='both'>Fall 2014</MenuItem>
+					</DropdownButton>
+
+
+              	</Nav>
+            </Navbar>
 		)
   	}
 });
