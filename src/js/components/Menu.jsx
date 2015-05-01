@@ -41,6 +41,12 @@ let Menu = React.createClass({
 						<MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever' data-statistic-name='both'>Forever</MenuItem>
 					</DropdownButton>
 
+					<DropdownButton title='Appearances'>
+                    	<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='appearances'>Spring 2015</MenuItem>
+						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='appearances'>Fall 2014</MenuItem>
+						<MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever' data-statistic-name='appearances'>Forever</MenuItem>
+                    </DropdownButton>
+
 
               	</Nav>
             </Navbar>

@@ -2,6 +2,7 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var Constants = require('../constants/AppConstants');
 
 var statisticValues = {
+    'appearances' : 6,
     'goals': 7,
     'assists': 8,
     'both': [7, 8]
