@@ -7,24 +7,15 @@ const Player = require('./Player.jsx');
 
 let TopPlayerList = React.createClass({
 
-  	_onChange() {
-  	},
-
-  	componentDidMount() {
-  	},
-
   	render() {
     	let {players} = this.props;
-    	console.log({players});
+    	let topPlayers = players.slice(0,3);
+    	let otherPlayers = players.slice(3,players.length);
 		return (
 			<div>
       			<Grid>
-                	<Row className='show-grid'>
-                  		<Col xs={12} md={4}><Player player={players[1]}/></Col>
-                  		<Col xs={12} md={4}><Player player={players[0]}/></Col>
-                  		<Col xs={12} md={4}><Player player={players[2]}/></Col>
-                	</Row>
-
+                  	<Row className='show-grid'>{topPlayers.map(player => <Col xs={12} md={4}><Player player={player} /></Col>)}</Row>
+					<Row className='show-grid'>{otherPlayers.map(player => <Col xs={12} md={3}><Player player={player} /></Col>)}</Row>
               </Grid>
               </div>
     	);
