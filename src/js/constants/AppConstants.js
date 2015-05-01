@@ -4,7 +4,8 @@ module.exports = {
 
     ActionTypes: keyMirror({
         ADD_TASK: null,
-        GET_STATISTICS: null
+        GET_SEASON_STATISTICS: null,
+        GET_FOREVER_STATISTICS: null
     }),
 
     ActionSources: keyMirror({

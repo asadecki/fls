@@ -33,28 +33,41 @@ var YAHOO_URL_TEMPLATE = "https://query.yahooapis.com/v1/public/yql?" +
 module.exports = {
 
     getPlayers: function (seasonName, valueName) {
+        if (seasonName === 'forever') {
+            Object.keys(seasons).forEach(function (seasonName) {
+                this.doGetPlayers(seasonName, valueName, Constants.ActionTypes.GET_FOREVER_STATISTICS, Object.keys(seasons).length);
+            }, this);
+
+        } else {
+            this.doGetPlayers(seasonName, valueName, Constants.ActionTypes.GET_SEASON_STATISTICS);
+        }
+    },
+
+    doGetPlayers: function (seasonName, valueName, actionType, seasonNumber) {
 
         $.ajax({
             traditional: true,
             url: this.prepareYahooUrl(seasonName),
             dataType: 'jsonp',
             success: function (data) {
-
                 if (data.query.results) {
-
                     var $players = data.query.results.body.div[0].div.section.section[1].div.table[1].tbody.tr;
                     var players = this.convertData($players, valueName);
-
-                    AppDispatcher.handleViewAction({
-                        type: Constants.ActionTypes.GET_STATISTICS,
-                        players: players
-                    });
+                    this.sendDataToDispatcher(actionType, players, valueName, seasonNumber);
                 }
-
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log('errrorrrr');
             }.bind(this)
+        });
+    },
+
+    sendDataToDispatcher: function(actionType, players, valueName, seasonNumber) {
+        AppDispatcher.handleViewAction({
+            type: actionType,
+            players: players,
+            sortField: valueName,
+            seasonNumber: seasonNumber
         });
     },
 
@@ -84,19 +97,7 @@ module.exports = {
             };
 
         });
-        return this.sortPlayers(players);
-    },
-
-    sortPlayers: function (array) {
-        return array.sort(function (a, b) {
-            if (a.value > b.value) {
-                return -1;
-            }
-            if (a.value < b.value) {
-                return 1;
-            }
-            return 0;
-        });
+        return players;
     },
 
     prepareYahooUrl: function (seasonName) {
