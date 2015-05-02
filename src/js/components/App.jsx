@@ -1,11 +1,13 @@
 const React = require('react');
-const PlayerView = require('./PlayerView.jsx');
+const MainView = require('./view/MainView.jsx');
 
 let App = React.createClass({
 
   	render() {
 			return (
-				<PlayerView/>
+				<div>
+					<MainView/>
+				</div>
     		);
   	}
 });

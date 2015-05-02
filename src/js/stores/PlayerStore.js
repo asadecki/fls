@@ -3,10 +3,7 @@ const Constants = require('../constants/AppConstants');
 const BaseStore = require('./BaseStore');
 const assign = require('object-assign');
 
-let _data = {
-    players : [],
-    statisticTitle : ""
-};
+let _data = {};
 
 let counter = 0;
 
@@ -53,7 +50,7 @@ let PlayerStore = assign({}, BaseStore, {
             if (counter === action.seasonToCollectNumber) {
                 counter = 0;
                 sort(_data.players);
-                setStatisticTitle(action.statisticName, action.seasonName);
+                setStatisticTitle(action.statisticName);
                 PlayerStore.emitChange();
             }
         }
