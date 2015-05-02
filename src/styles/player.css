@@ -1,5 +1,5 @@
 .js-top-player span {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .js-stats-title {
@@ -10,7 +10,7 @@
 }
 
 .jumbotron p {
-    font-size: 13px;
+    font-size: 11px;
 }
 
 .player-panel {
@@ -42,4 +42,3 @@ body {
 .navbar-header {
     padding-left: 10px;
 }
-
