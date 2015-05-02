@@ -45,6 +45,24 @@ let Menu = React.createClass({
 						<MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever' data-statistic-name='appearances'>Forever</MenuItem>
                     </DropdownButton>
 
+                    <DropdownButton title='MVP'>
+						<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='mvp'>Spring 2015</MenuItem>
+						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='mvp'>Fall 2014</MenuItem>
+						<MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever' data-statistic-name='mvp'>Forever</MenuItem>
+					</DropdownButton>
+
+					<DropdownButton title='Yellow Cards'>
+						<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='yellow'>Spring 2015</MenuItem>
+						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='yellow'>Fall 2014</MenuItem>
+						<MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever' data-statistic-name='yellow'>Forever</MenuItem>
+					</DropdownButton>
+
+					<DropdownButton title='Red Cards'>
+						<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='red'>Spring 2015</MenuItem>
+						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='red'>Fall 2014</MenuItem>
+						<MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever' data-statistic-name='red'>Forever</MenuItem>
+					</DropdownButton>
+
 
               	</Nav>
             </Navbar>
