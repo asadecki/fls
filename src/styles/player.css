@@ -1,5 +1,16 @@
+.js-top-player span {
+    font-size: 25px;
+}
+
+.js-stats-title {
+    text-align: center;
+    width:30%;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+
 .jumbotron p {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .player-panel {
@@ -12,8 +23,8 @@
 
 .container {
     padding-top: 15px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 body {
@@ -24,10 +35,6 @@ body {
     font-weight: bold;
 }
 
-.js-top-player span {
-    font-size: 25px;
-}
-
 .js-top-player img {
     margin-left: 50%;
 }
@@ -36,9 +43,3 @@ body {
     padding-left: 10px;
 }
 
-.js-stats-title {
-    text-align: center;
-    width:30%;
-    margin-left: 35%;
-    margin-right: 35%;
-}

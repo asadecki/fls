@@ -1,30 +1,9 @@
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var Constants = require('../constants/AppConstants');
+var StatisticConstant = require('../constants/StatisticIds');
+var SeasonsConstant = require('../constants/SeasonsInfo');
+var TeamConstant = require('../constants/TeamInfo');
 
-var statisticValues = {
-    'appearances' : 6,
-    'goals': 7,
-    'assists': 8,
-    'goals-and-assists': [7, 8]
-};
-
-var seasons = {
-    "seasonFall2014": {
-        "SEASON_ID": 77,
-        "SEASON_NAME": "liga-d1-jesien-2014",
-        "SEASON_NICE_NAME": "Fall 2014",
-        "TEAM_ID": 178,
-        "TEAM_NAME": "schibsted-tech-polska"
-    },
-
-    "seasonSpring2015": {
-        "SEASON_ID": 87,
-        "SEASON_NAME": "liga-d1-wiosna-2015",
-        "SEASON_NICE_NAME": "Spring 2015",
-        "TEAM_ID": 178,
-        "TEAM_NAME": "schibsted-tech-polska"
-    }
-};
 
 // TODO this is shit. Each time someone sees that one panda dies
 var YAHOO_URL_TEMPLATE = "https://query.yahooapis.com/v1/public/yql?" +
@@ -37,8 +16,8 @@ module.exports = {
 
     getPlayers: function (seasonName, valueName) {
         if (seasonName === 'forever') {
-            Object.keys(seasons).forEach(function (seasonName) {
-                this.doGetPlayers(seasonName, valueName, Constants.ActionTypes.GET_FOREVER_STATISTICS, Object.keys(seasons).length);
+            Object.keys(SeasonsConstant.Seasons).forEach(function (seasonName) {
+                this.doGetPlayers(seasonName, valueName, Constants.ActionTypes.GET_FOREVER_STATISTICS, Object.keys(SeasonsConstant.Seasons).length);
             }, this);
 
         } else {
@@ -47,7 +26,6 @@ module.exports = {
     },
 
     doGetPlayers: function (seasonName, valueName, actionType, seasonToCollectNumber) {
-
         $.ajax({
             traditional: true,
             url: this.prepareYahooUrl(seasonName),
@@ -70,7 +48,7 @@ module.exports = {
             type: actionType,
             players: players,
             statisticName: valueName,
-            seasonName: seasons[seasonName].SEASON_NICE_NAME,
+            seasonName: SeasonsConstant.Seasons[seasonName].SEASON_NICE_NAME,
             seasonToCollectNumber: seasonToCollectNumber
         });
     },
@@ -87,11 +65,11 @@ module.exports = {
             var value;
 
             if (valueName === 'goals-and-assists') {
-                var value7 = parseInt(player[statisticValues['goals']].content.replace(/[^0-9.]/g, ""));
-                var value8 = parseInt(player[statisticValues['assists']].content.replace(/[^0-9.]/g, ""));
+                var value7 = parseInt(player[StatisticConstant.StatisticIds['goals']].content.replace(/[^0-9.]/g, ""));
+                var value8 = parseInt(player[StatisticConstant.StatisticIds['assists']].content.replace(/[^0-9.]/g, ""));
                 value = value7 + value8;
             } else {
-                value = parseInt(player[statisticValues[valueName]].content.replace(/[^0-9.]/g, ""));
+                value = parseInt(player[StatisticConstant.StatisticIds[valueName]].content.replace(/[^0-9.]/g, ""));
             }
 
             return {
@@ -105,11 +83,10 @@ module.exports = {
     },
 
     prepareYahooUrl: function (seasonName) {
-        var seasonToGet = seasons[seasonName];
         return YAHOO_URL_TEMPLATE
-            .replace("SEASON_ID", seasonToGet.SEASON_ID)
-            .replace("SEASON_NAME", seasonToGet.SEASON_NAME)
-            .replace("TEAM_ID", seasonToGet.TEAM_ID)
-            .replace("TEAM_NAME", seasonToGet.TEAM_NAME);
+            .replace("SEASON_ID", SeasonsConstant.Seasons[seasonName].SEASON_ID)
+            .replace("SEASON_NAME", SeasonsConstant.Seasons[seasonName].SEASON_NAME)
+            .replace("TEAM_ID", TeamConstant.Team.TEAM_ID)
+            .replace("TEAM_NAME", TeamConstant.Team.TEAM_NAME);
     }
 };

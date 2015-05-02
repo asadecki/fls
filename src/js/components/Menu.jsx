@@ -8,8 +8,6 @@ const DropdownButton = require('react-bootstrap/lib/DropdownButton');
 const MenuItem = require('react-bootstrap/lib/MenuItem');
 const PlayerAction = require('../actions/PlayerAction');
 
-
-
 let Menu = React.createClass({
 
 	handleClick() {
@@ -23,19 +21,19 @@ let Menu = React.createClass({
 			<Navbar brand='Schibsted Tech Polska' inverse>
              	<Nav bsStyle='tabs' >
 
-					<DropdownButton title='Best Strikers'>
+					<DropdownButton title='Goals'>
 						<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='goals'>Spring 2015</MenuItem>
 						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='goals'>Fall 2014</MenuItem>
 						<MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever' data-statistic-name='goals'>Forever</MenuItem>
 					</DropdownButton>
 
-					<DropdownButton title='Who can pass like Iniesta'>
+					<DropdownButton title='Assists'>
 						<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='assists'>Spring 2015</MenuItem>
 						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='assists'>Fall 2014</MenuItem>
 						<MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever' data-statistic-name='assists'>Forever</MenuItem>
 					</DropdownButton>
 
-					<DropdownButton title='Who can do both'>
+					<DropdownButton title='Goals and assists'>
 						<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='goals-and-assists'>Spring 2015</MenuItem>
 						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='goals-and-assists'>Fall 2014</MenuItem>
 						<MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever' data-statistic-name='goals-and-assists'>Forever</MenuItem>

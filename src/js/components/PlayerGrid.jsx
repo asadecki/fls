@@ -5,7 +5,7 @@ const Col = require('react-bootstrap/lib/Col');
 const Jumbotron = require('react-bootstrap/lib/Jumbotron');
 const Player = require('./Player.jsx');
 
-let TopPlayerList = React.createClass({
+let PlayerGrid = React.createClass({
 
   	render() {
     	let {players} = this.props;
@@ -17,9 +17,9 @@ let TopPlayerList = React.createClass({
                   	<Row className='show-grid js-top-player'>{topPlayers.map(player => <Col xs={12} md={4}><Player player={player} /></Col>)}</Row>
 					<Row className='show-grid'>{otherPlayers.map(player => <Col xs={12} md={3}><Player player={player} /></Col>)}</Row>
               </Grid>
-              </div>
+            </div>
     	);
   	}
 });
 
-module.exports = TopPlayerList;
+module.exports = PlayerGrid;

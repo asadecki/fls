@@ -3,73 +3,64 @@ const Constants = require('../constants/AppConstants');
 const BaseStore = require('./BaseStore');
 const assign = require('object-assign');
 
-let _data = [];
-let _statisticTitle = "";
+let _data = {
+    players : [],
+    statisticTitle : ""
+};
 
 let counter = 0;
 
 let PlayerStore = assign({}, BaseStore, {
 
-    getAll() {
+    getData() {
         return {
-            players: _data,
-            statisticTitle: _statisticTitle
+            players : _data.players,
+            statisticTitle : _data.statisticTitle
         };
     },
 
     dispatcherIndex: AppDispatcher.register(function (payload) {
         let action = payload.action;
 
-        switch (action.type) {
+        if (action.type === Constants.ActionTypes.GET_SEASON_STATISTICS) {
 
-            case Constants.ActionTypes.GET_SEASON_STATISTICS:
-                let players = action.players;
-                let statisticTitle = "Most " + action.statisticName + " of " + action.seasonName;
-                _data = sortPlayers(players);
-                _statisticTitle = statisticTitle;
-                PlayerStore.emitChange();
-                break;
+            _data.players = sort(action.players);
+            setStatisticTitle(action.statisticName, action.seasonName);
+            PlayerStore.emitChange();
 
-            case Constants.ActionTypes.GET_FOREVER_STATISTICS:
+        } else if (action.type === Constants.ActionTypes.GET_FOREVER_STATISTICS){
+            // probably it could be done better
+            if (counter === 0) {
+                _data.players = [];
+            }
 
-                // probably it could be done better
-                let players = action.players;
-                let seasonToCollectNumber = action.seasonToCollectNumber;
+            action.players.forEach(function(player) {
 
-                if (counter === 0) {
-                    _data = [];
-                }
-
-                players.forEach(function(player) {
-
-                    var alreadyExists = false;
-                    _data.forEach(function(data) {
-                        if(data.name == player.name) {
-                            data.value += player.value;
-                            alreadyExists = true;
-                        }
-                    });
-
-                    if (!alreadyExists) {
-                        _data.push(player);
+                var alreadyExists = false;
+                _data.players.forEach(function(data) {
+                    if(data.name == player.name) {
+                        data.value += player.value;
+                        alreadyExists = true;
                     }
                 });
 
-                counter++;
-                if (counter === seasonToCollectNumber) {
-                    counter = 0;
-                    sortPlayers(_data);
-                    _statisticTitle = "Most " + action.statisticName + " of " + "ages";
-
-                    PlayerStore.emitChange();
+                if (!alreadyExists) {
+                    _data.players.push(player);
                 }
+            });
 
-                break;
+            counter++;
+            if (counter === action.seasonToCollectNumber) {
+                counter = 0;
+                sort(_data.players);
+                setStatisticTitle(action.statisticName, action.seasonName);
+                PlayerStore.emitChange();
+            }
         }
     })
 });
 
-function sortPlayers(array) {
+function sort(array) {
     return array.sort(function (a, b) {
         if (a.value > b.value) {
             return -1;
@@ -79,6 +70,10 @@ function sortPlayers(array) {
         }
         return 0;
     });
+};
+
+function setStatisticTitle(statisticName, seasonName) {
+    _data.statisticTitle = "Most " + statisticName + " of " + (seasonName ? seasonName : "ages");
 };
 
 module.exports = PlayerStore;
