@@ -4,6 +4,7 @@ const BaseStore = require('./BaseStore');
 const assign = require('object-assign');
 
 let _data = [];
+let _statisticTitle = "";
 
 let counter = 0;
 
@@ -11,7 +12,8 @@ let PlayerStore = assign({}, BaseStore, {
 
     getAll() {
         return {
-            players: _data
+            players: _data,
+            statisticTitle: _statisticTitle
         };
     },
 
@@ -22,8 +24,9 @@ let PlayerStore = assign({}, BaseStore, {
 
             case Constants.ActionTypes.GET_SEASON_STATISTICS:
                 let players = action.players;
-                let sortField = action.sortField;
-                _data = sortPlayers(players, sortField);
+                let statisticTitle = "Most " + action.statisticName + " of " + action.seasonName;
+                _data = sortPlayers(players);
+                _statisticTitle = statisticTitle;
                 PlayerStore.emitChange();
                 break;
 
@@ -31,7 +34,7 @@ let PlayerStore = assign({}, BaseStore, {
 
                 // probably it could be done better
                 let players = action.players;
-                let seasonNumber = action.seasonNumber;
+                let seasonToCollectNumber = action.seasonToCollectNumber;
 
                 if (counter === 0) {
                     _data = [];
@@ -53,9 +56,11 @@ let PlayerStore = assign({}, BaseStore, {
                 });
 
                 counter++;
-                if (counter === seasonNumber) {
+                if (counter === seasonToCollectNumber) {
                     counter = 0;
                     sortPlayers(_data);
+                    _statisticTitle = "Most " + action.statisticName + " of " + "ages";
+
                     PlayerStore.emitChange();
                 }
 

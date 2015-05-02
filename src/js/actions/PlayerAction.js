@@ -5,13 +5,14 @@ var statisticValues = {
     'appearances' : 6,
     'goals': 7,
     'assists': 8,
-    'both': [7, 8]
+    'goals-and-assists': [7, 8]
 };
 
 var seasons = {
     "seasonFall2014": {
         "SEASON_ID": 77,
         "SEASON_NAME": "liga-d1-jesien-2014",
+        "SEASON_NICE_NAME": "Fall 2014",
         "TEAM_ID": 178,
         "TEAM_NAME": "schibsted-tech-polska"
     },
@@ -19,6 +20,7 @@ var seasons = {
     "seasonSpring2015": {
         "SEASON_ID": 87,
         "SEASON_NAME": "liga-d1-wiosna-2015",
+        "SEASON_NICE_NAME": "Spring 2015",
         "TEAM_ID": 178,
         "TEAM_NAME": "schibsted-tech-polska"
     }
@@ -44,7 +46,7 @@ module.exports = {
         }
     },
 
-    doGetPlayers: function (seasonName, valueName, actionType, seasonNumber) {
+    doGetPlayers: function (seasonName, valueName, actionType, seasonToCollectNumber) {
 
         $.ajax({
             traditional: true,
@@ -54,7 +56,7 @@ module.exports = {
                 if (data.query.results) {
                     var $players = data.query.results.body.div[0].div.section.section[1].div.table[1].tbody.tr;
                     var players = this.convertData($players, valueName);
-                    this.sendDataToDispatcher(actionType, players, valueName, seasonNumber);
+                    this.sendDataToDispatcher(actionType, players, valueName, seasonName, seasonToCollectNumber);
                 }
             }.bind(this),
             error: function (xhr, status, err) {
@@ -63,12 +65,13 @@ module.exports = {
         });
     },
 
-    sendDataToDispatcher: function(actionType, players, valueName, seasonNumber) {
+    sendDataToDispatcher: function(actionType, players, valueName, seasonName, seasonToCollectNumber) {
         AppDispatcher.handleViewAction({
             type: actionType,
             players: players,
-            sortField: valueName,
-            seasonNumber: seasonNumber
+            statisticName: valueName,
+            seasonName: seasons[seasonName].SEASON_NICE_NAME,
+            seasonToCollectNumber: seasonToCollectNumber
         });
     },
 
@@ -83,7 +86,7 @@ module.exports = {
             var name = player[3].a.span.content;
             var value;
 
-            if (valueName === 'both') {
+            if (valueName === 'goals-and-assists') {
                 var value7 = parseInt(player[statisticValues['goals']].content.replace(/[^0-9.]/g, ""));
                 var value8 = parseInt(player[statisticValues['assists']].content.replace(/[^0-9.]/g, ""));
                 value = value7 + value8;

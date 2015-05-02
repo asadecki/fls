@@ -16,7 +16,7 @@ let Player = React.createClass({
 					<p>{player.name} </p>
 					<p>Number : {player.number} </p>
 					<p>Value : {player.value} </p>
-					<img src="http://liga-fls.pl/home/images/com_joomleague/database/persons/watek_pawel.jpg" className="img-circle"/>
+					<img src="http://liga-fls.pl/home/images/com_joomleague/database/persons/watek_pawel.jpg" className="img-rounded"/>
 				</Jumbotron>
     		);
     	} else {

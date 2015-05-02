@@ -36,9 +36,9 @@ let Menu = React.createClass({
 					</DropdownButton>
 
 					<DropdownButton title='Who can do both'>
-						<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='both'>Spring 2015</MenuItem>
-						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='both'>Fall 2014</MenuItem>
-						<MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever' data-statistic-name='both'>Forever</MenuItem>
+						<MenuItem eventKey='1' onSelect={this.handleClick} data-season='seasonSpring2015' data-statistic-name='goals-and-assists'>Spring 2015</MenuItem>
+						<MenuItem eventKey='2' onSelect={this.handleClick} data-season='seasonFall2014' data-statistic-name='goals-and-assists'>Fall 2014</MenuItem>
+						<MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever' data-statistic-name='goals-and-assists'>Forever</MenuItem>
 					</DropdownButton>
 
 					<DropdownButton title='Appearances'>

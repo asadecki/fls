@@ -4,13 +4,15 @@ const PlayerAction = require('../actions/PlayerAction');
 const TopPlayerList = require('./TopPlayerList.jsx');
 const Menu = require('./Menu.jsx');
 const Button = require('react-bootstrap/lib/Button');
+const Panel = require('react-bootstrap/lib/Panel');
 
 
 let App = React.createClass({
 
   	getInitialState() {
     	return {
-      		players: []
+      		players: [],
+      		statisticTitle: "Statistics of Schibsted Tech Polska"
     	}
   	},
 
@@ -24,10 +26,12 @@ let App = React.createClass({
 
   	render() {
     	let {players} = this.state;
+    	let {statisticTitle} = this.state;
 		return (
 
       		<div className="container">
         		<Menu/>
+        		<Panel className="js-stats-title">{statisticTitle}</Panel>
         		<TopPlayerList players ={players}/>
       		</div>
     	);

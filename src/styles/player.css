@@ -3,20 +3,42 @@
 }
 
 .player-panel {
-    background-color: #f8f8ff;
+    background-color: orange;
 }
 
 .nav {
     padding-bottom: 15px;
 }
 
-
 .container {
-    padding-top:15px;
-    padding-left : 0px;
-    padding-right :0px;
+    padding-top: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 body {
     background: black;
+}
+
+.show-grid span {
+    font-weight: bold;
+}
+
+.js-top-player span {
+    font-size: 25px;
+}
+
+.js-top-player img {
+    margin-left: 50%;
+}
+
+.navbar-header {
+    padding-left: 10px;
+}
+
+.js-stats-title {
+    text-align: center;
+    width:30%;
+    margin-left: 35%;
+    margin-right: 35%;
 }
