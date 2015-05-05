@@ -4,9 +4,12 @@ const Button = require('react-bootstrap/lib/Button');
 const Nav = require('react-bootstrap/lib/Nav');
 const NavItem = require('react-bootstrap/lib/NavItem');
 const Navbar = require('react-bootstrap/lib/Navbar');
+const Carousel = require('react-bootstrap/lib/Carousel');
+const CarouselItem = require('react-bootstrap/lib/CarouselItem');
 const DropdownButton = require('react-bootstrap/lib/DropdownButton');
 const MenuItem = require('react-bootstrap/lib/MenuItem');
 const PlayerAction = require('../../actions/PlayerAction');
+
 
 let MenuIndividual = React.createClass({
 
@@ -15,6 +18,7 @@ let MenuIndividual = React.createClass({
 		var statName = event.target.parentElement.getAttribute('data-statistic-name');
 		PlayerAction.getPlayers(season,statName);
 	},
+
 
 	render() {
 		// TODO each DropdownButton should be a separate ReactObject
@@ -70,6 +74,7 @@ let MenuIndividual = React.createClass({
             </Navbar>
 		)
   	}
+
 });
 
 module.exports = MenuIndividual;

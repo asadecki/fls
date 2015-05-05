@@ -2,6 +2,7 @@ const React = require('react');
 const MenuStore = require('./../../stores/MenuStore');
 const StatisticTypeMenu = require('./../menu/StatisticTypeMenu.jsx');
 const IndividualView = require('./../view/IndividualView.jsx');
+const TeamView = require('./../view/TeamView.jsx');
 
 let MainView = React.createClass({
 
@@ -28,6 +29,7 @@ let MainView = React.createClass({
       		<div className="container">
       			<StatisticTypeMenu/>
       			{menuType === 'individual' ? <IndividualView/> : ""}
+      			{menuType === 'team' ? <TeamView/> : ""}
       		</div>
     	);
   	}

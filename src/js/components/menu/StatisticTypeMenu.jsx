@@ -1,7 +1,7 @@
 const React = require('react');
-const Nav = require('react-bootstrap/lib/Nav');
-const Navbar = require('react-bootstrap/lib/Navbar');
-const NavItem = require('react-bootstrap/lib/NavItem');
+const Grid = require('react-bootstrap/lib/Grid');
+const Row = require('react-bootstrap/lib/Row');
+const Col = require('react-bootstrap/lib/Col');
 const MenuAction = require('../../actions/MenuAction');
 
 
@@ -9,7 +9,7 @@ let StatisticTypeMenu = React.createClass({
 
 	handleClick() {
 
-		var type = event.target.parentElement.getAttribute('data-menu-type');
+		var type = event.target.parentElement.parentElement.getAttribute('data-menu-type');
 		MenuAction.setMenuType(type);
 	},
 
@@ -17,17 +17,23 @@ let StatisticTypeMenu = React.createClass({
 		// TODO each NavItem should be a separate ReactObject
 
 		return (
-			<Navbar brand='Schibsted Tech Polska' inverse>
-             	<Nav bsStyle='buttons' >
-					<NavItem onSelect={this.handleClick} data-menu-type='individual'>
-						Individual Statistics
-					</NavItem>
+			<Grid>
+                <Row className='show-grid'>
+                	<Col onClick={this.handleClick} data-menu-type='individual' xs={12} md={6}>
+                		<div>
+                			<p>Individual Statistics</p>
+                  			<img src="https://goo.gl/TBVSBK"/>
+                  		</div>
+					</Col>
+                  	<Col onClick={this.handleClick} data-menu-type='team' xs={12} md={6}>
+                  		<div>
+                  			<p>Team Statistics</p>
+                  			<img src="https://goo.gl/6JGEp1"/>
+						</div>
+					</Col>
+                </Row>
 
-					<NavItem onSelect={this.handleClick} data-menu-type='team'>
-						Team Statistics
-					</NavItem>
-              	</Nav>
-            </Navbar>
+		  	</Grid>
 		)
   	}
 });
