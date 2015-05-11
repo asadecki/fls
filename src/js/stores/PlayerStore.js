@@ -1,6 +1,6 @@
 const AppDispatcher = require('../dispatchers/AppDispatcher');
 const Constants = require('../constants/AppConstants');
-const PlayerHelper = require('../helpers/PlayerHelper');
+const Utils = require('../helpers/Utils');
 const BaseStore = require('./BaseStore');
 const assign = require('object-assign');
 
@@ -15,7 +15,7 @@ function getStatisticsForOneSeason(action) {
   let seasonName = action.seasonName;
   let players = action.players;
 
-  _data.players = PlayerHelper.sortByField(PlayerHelper.mapToPlayer(players, statisticName));
+  _data.players = Utils.sortByField(Utils.mapToPlayers(players, statisticName));
   PlayerStore.setStatisticInfo(statisticName, seasonName);
   PlayerStore.emitChange();
 }
@@ -30,7 +30,7 @@ function getStatisticsForAllSeasons(action) {
     token = currentToken;
   }
 
-  players = PlayerHelper.mapToPlayer(players, statisticName);
+  players = Utils.mapToPlayers(players, statisticName);
 
   players.forEach(function (player) {
     var alreadyExists = false;
@@ -46,7 +46,7 @@ function getStatisticsForAllSeasons(action) {
     }
   });
 
-  _data.players = PlayerHelper.sortByField(_data.players);
+  _data.players = Utils.sortByField(_data.players);
   PlayerStore.setStatisticInfo(action.statisticName);
   PlayerStore.emitChange();
 }

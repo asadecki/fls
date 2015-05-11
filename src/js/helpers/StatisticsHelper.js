@@ -1,26 +1,11 @@
 var Constants = require('../constants/AppConstants');
+var YqlHelper = require('../helpers/YqlHelper');
 var SeasonsConstant = require('../constants/SeasonsInfo');
 var TeamConstant = require('../constants/TeamInfo');
 var StatisticConstant = require('../constants/StatisticIds');
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var YqlHelper = require('../helpers/YqlHelper');
 
 module.exports = {
-
-  getPlayers: function (params) {
-    if (params.seasonName === 'forever') {
-      params.token = this.token();
-      Object.keys(SeasonsConstant.Seasons).forEach(function (seasonName) {
-        params.actionType = Constants.ActionTypes.GET_FOREVER_PLAYERS_STATISTICS;
-        params.seasonName = seasonName;
-        this.doGetPlayers(params);
-      }, this);
-    } else {
-      params.seasonNiceName = SeasonsConstant.Seasons[params.seasonName].SEASON_NICE_NAME;
-      params.actionType = Constants.ActionTypes.GET_SEASON_PLAYERS_STATISTICS;
-      this.doGetPlayers(params);
-    }
-  },
 
   doGetPlayers: function (params) {
     $.ajax({
@@ -55,7 +40,7 @@ module.exports = {
         goals: this.getStatisticField(player, 'goals'),
         assists: this.getStatisticField(player, 'assists'),
         appearances: this.getStatisticField(player, 'appearances'),
-        mvp : this.getStatisticField(player, 'mvp'),
+        mvp: this.getStatisticField(player, 'mvp'),
         yellow: this.getStatisticField(player, 'yellow'),
         red: this.getStatisticField(player, 'red')
       };
@@ -64,9 +49,5 @@ module.exports = {
 
   getStatisticField: function (player, statisticName) {
     return parseInt(player[StatisticConstant.StatisticIds[statisticName]].content.replace(/[^0-9.]/g, ""))
-  },
-
-  token: function () {
-    return Math.random().toString(36).substr(2);
   }
 };

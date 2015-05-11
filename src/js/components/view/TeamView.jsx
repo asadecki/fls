@@ -1,6 +1,6 @@
 const React = require('react');
 const MenuTeam = require('./../menu/MenuTeam.jsx');
-const PlayerGrid = require('./../PlayerGrid.jsx');
+const FormationGrid = require('./../FormationGrid.jsx');
 
 
 let IndividualView = React.createClass({
@@ -9,7 +9,7 @@ let IndividualView = React.createClass({
     return (
       <div>
         <MenuTeam/>
-        <PlayerGrid/>
+        <FormationGrid/>
       </div>
     );
   }

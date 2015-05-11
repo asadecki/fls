@@ -1,9 +1,6 @@
 var Constants = require('../constants/AppConstants');
-var SeasonsConstant = require('../constants/SeasonsInfo');
-var TeamConstant = require('../constants/TeamInfo');
 
 module.exports = {
-
 
   sortByField: function (array) {
     return array.sort(function (a, b) {
@@ -17,7 +14,7 @@ module.exports = {
     });
   },
 
-  mapToPlayer: function (array, statisticField) {
+  mapToPlayers: function (array, statisticField) {
     return array.map(function (playerFullInfo) {
 
       var player = {

@@ -8,12 +8,16 @@ const Carousel = require('react-bootstrap/lib/Carousel');
 const CarouselItem = require('react-bootstrap/lib/CarouselItem');
 const DropdownButton = require('react-bootstrap/lib/DropdownButton');
 const MenuItem = require('react-bootstrap/lib/MenuItem');
-const PlayerAction = require('../../actions/PlayerAction');
+const FormationStatsticsAction = require('../../actions/FormationStatsticsAction');
 
 let MenuIndividual = React.createClass({
 
   handleClick() {
-    PlayerAction.getPlayers("seasonSpring2015", "goals");
+    var params = {
+      seasonName: "seasonSpring2015"
+    };
+
+    FormationStatsticsAction.getFormations(params);
   },
 
   render() {

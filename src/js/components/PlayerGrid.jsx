@@ -6,11 +6,12 @@ const Jumbotron = require('react-bootstrap/lib/Jumbotron');
 const Panel = require('react-bootstrap/lib/Panel');
 const Player = require('./Player.jsx');
 const PlayerStore = require('../stores/PlayerStore');
-const PlayerAction = require('../actions/PlayerAction');
 
 let PlayerGrid = React.createClass({
 
   getInitialState() {
+
+
     return {
       players: [],
       statisticTitle: "Statistics of Schibsted Tech Polska",
