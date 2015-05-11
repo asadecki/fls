@@ -12,21 +12,21 @@ const PlayerAction = require('../../actions/PlayerAction');
 
 let MenuIndividual = React.createClass({
 
-	handleClick() {
-		PlayerAction.getPlayers("seasonSpring2015", "goals");
-	},
+  handleClick() {
+    PlayerAction.getPlayers("seasonSpring2015", "goals");
+  },
 
-	render() {
-		// TODO each DropdownButton should be a separate ReactObject
+  render() {
+    // TODO each DropdownButton should be a separate ReactObject
 
-		return (
-			<Navbar brand='Individual statistics' inverse>
-             	<Nav bsStyle='tabs' >
-					<NavItem onClick={this.handleClick} eventKey={1} href='#'>Formations</NavItem>
-              	</Nav>
-            </Navbar>
-		)
-  	}
+    return (
+      <Navbar brand='Individual statistics' inverse>
+        <Nav bsStyle='tabs'>
+          <NavItem onClick={this.handleClick} eventKey={1} href='#'>Formations</NavItem>
+        </Nav>
+      </Navbar>
+    )
+  }
 
 });
 

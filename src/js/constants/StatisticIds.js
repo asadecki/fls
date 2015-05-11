@@ -6,7 +6,6 @@ module.exports = {
         'assists': 8,
         'mvp' : 9,
         'yellow' : 10,
-        'red' : 11,
-        'goals-and-assists': [7, 8]
+        'red' : 11
     }
 };

@@ -7,35 +7,34 @@ const MenuAction = require('../../actions/MenuAction');
 
 let StatisticTypeMenu = React.createClass({
 
-	handleClick() {
+  handleClick() {
+    var type = event.target.parentElement.parentElement.getAttribute('data-menu-type');
+    MenuAction.setMenuType(type);
+  },
 
-		var type = event.target.parentElement.parentElement.getAttribute('data-menu-type');
-		MenuAction.setMenuType(type);
-	},
+  render() {
+    // TODO each NavItem should be a separate ReactObject
 
-	render() {
-		// TODO each NavItem should be a separate ReactObject
+    return (
+      <Grid>
+        <Row className='show-grid'>
+          <Col onClick={this.handleClick} data-menu-type='individual' xs={12} md={6}>
+            <div>
+              <p>Individual Statistics</p>
+              <img src="https://goo.gl/TBVSBK"/>
+            </div>
+          </Col>
+          <Col onClick={this.handleClick} data-menu-type='team' xs={12} md={6}>
+            <div>
+              <p>Team Statistics</p>
+              <img src="https://goo.gl/6JGEp1"/>
+            </div>
+          </Col>
+        </Row>
 
-		return (
-			<Grid>
-                <Row className='show-grid'>
-                	<Col onClick={this.handleClick} data-menu-type='individual' xs={12} md={6}>
-                		<div>
-                			<p>Individual Statistics</p>
-                  			<img src="https://goo.gl/TBVSBK"/>
-                  		</div>
-					</Col>
-                  	<Col onClick={this.handleClick} data-menu-type='team' xs={12} md={6}>
-                  		<div>
-                  			<p>Team Statistics</p>
-                  			<img src="https://goo.gl/6JGEp1"/>
-						</div>
-					</Col>
-                </Row>
-
-		  	</Grid>
-		)
-  	}
+      </Grid>
+    )
+  }
 });
 
 module.exports = StatisticTypeMenu;

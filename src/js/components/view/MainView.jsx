@@ -6,33 +6,32 @@ const TeamView = require('./../view/TeamView.jsx');
 
 let MainView = React.createClass({
 
-  	getInitialState() {
-    	return {
-      		menuType : ''
-    	}
-  	},
+  getInitialState() {
+    return {
+      menuType: ''
+    }
+  },
 
-  	_onChange() {
-    	this.setState(MenuStore.getData());
-  	},
+  _onChange() {
+    this.setState(MenuStore.getData());
+  },
 
-  	componentDidMount() {
-    	MenuStore.addChangeListener(this._onChange);
-  	},
+  componentDidMount() {
+    MenuStore.addChangeListener(this._onChange);
+  },
 
-  	render() {
+  render() {
 
-    	let {menuType} = this.state;
-    	console.log({menuType})
+    let {menuType} = this.state;
 
-		return (
-      		<div className="container">
-      			<StatisticTypeMenu/>
-      			{menuType === 'individual' ? <IndividualView/> : ""}
-      			{menuType === 'team' ? <TeamView/> : ""}
-      		</div>
-    	);
-  	}
+    return (
+      <div className="container">
+        <StatisticTypeMenu/>
+        {menuType === 'individual' ? <IndividualView/> : ""}
+        {menuType === 'team' ? <TeamView/> : ""}
+      </div>
+    );
+  }
 });
 
 module.exports = MainView;

@@ -12,7 +12,7 @@ let Player = React.createClass({
 		return (
 			<Jumbotron className="player-panel">
 				<p>{player.name} <Badge> {player.number}</Badge></p>
-				<p>Value : {player.value} </p>
+				<p>{player.statisticName} : {player.value} </p>
 				<img src="http://liga-fls.pl/home/images/com_joomleague/database/persons/watek_pawel.jpg" className="img-rounded"/>
 			</Jumbotron>
 		);

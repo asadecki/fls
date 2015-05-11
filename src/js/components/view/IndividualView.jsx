@@ -5,14 +5,14 @@ const PlayerGrid = require('./../PlayerGrid.jsx');
 
 let IndividualView = React.createClass({
 
-  	render() {
-		return (
-			<div>
-      			<MenuIndividual/>
-      			<PlayerGrid/>
-			</div>
-    	);
-  	}
+  render() {
+    return (
+      <div>
+        <MenuIndividual/>
+        <PlayerGrid/>
+      </div>
+    );
+  }
 });
 
 module.exports = IndividualView;

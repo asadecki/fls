@@ -7,20 +7,20 @@ let _data = {};
 
 let MenuStore = assign({}, BaseStore, {
 
-    getData() {
-        return {
-            menuType : _data
-        };
-    },
+  getData() {
+    return {
+      menuType: _data
+    };
+  },
 
-    dispatcherIndex: AppDispatcher.register(function (payload) {
-        let action = payload.action;
+  dispatcherIndex: AppDispatcher.register(function (payload) {
+    let action = payload.action;
 
-        if (action.type === Constants.ActionTypes.CHOOSE_MENU_TYPE) {
-            _data = action.menuType;
-            MenuStore.emitChange();
-        }
-    })
+    if (action.type === Constants.ActionTypes.CHOOSE_MENU_TYPE) {
+      _data = action.menuType;
+      MenuStore.emitChange();
+    }
+  })
 });
 
 

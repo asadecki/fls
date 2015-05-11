@@ -4,8 +4,8 @@ module.exports = {
 
     ActionTypes: keyMirror({
         ADD_TASK: null,
-        GET_SEASON_STATISTICS: null,
-        GET_FOREVER_STATISTICS: null,
+        GET_SEASON_PLAYERS_STATISTICS: null,
+        GET_FOREVER_PLAYERS_STATISTICS: null,
         CHOOSE_MENU_TYPE: null
     }),
 
