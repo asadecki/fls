@@ -4,10 +4,18 @@ var SeasonsConstant = require('../constants/SeasonsInfo');
 var TeamConstant = require('../constants/TeamInfo');
 var StatisticConstant = require('../constants/StatisticIds');
 var AppDispatcher = require('../dispatchers/AppDispatcher');
+var $ = require('jquery');
+var Chart = require('chart.js');
 
 module.exports = {
 
   doGetPlayers: function (params) {
+
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var data = {};  
+    var myNewChart = new Chart(ctx).PolarArea(data);
+    console.log('sss');
+    console.log(myNewChart);
     $.ajax({
       traditional: true,
       url: YqlHelper.prepareYahooUrl(params.seasonName),
