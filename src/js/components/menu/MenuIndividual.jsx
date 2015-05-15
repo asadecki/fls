@@ -1,11 +1,6 @@
 const React = require('react');
-const ButtonGroup = require('react-bootstrap/lib/ButtonGroup');
-const Button = require('react-bootstrap/lib/Button');
 const Nav = require('react-bootstrap/lib/Nav');
-const NavItem = require('react-bootstrap/lib/NavItem');
 const Navbar = require('react-bootstrap/lib/Navbar');
-const Carousel = require('react-bootstrap/lib/Carousel');
-const CarouselItem = require('react-bootstrap/lib/CarouselItem');
 const DropdownButton = require('react-bootstrap/lib/DropdownButton');
 const MenuItem = require('react-bootstrap/lib/MenuItem');
 const PlayersStatisticAction = require('../../actions/PlayersStatisticAction');
@@ -93,8 +88,6 @@ let MenuIndividual = React.createClass({
             <MenuItem eventKey='3' onSelect={this.handleClick} data-season='forever'
                       data-statistic-name='red'>Forever</MenuItem>
           </DropdownButton>
-
-
         </Nav>
       </Navbar>
     )

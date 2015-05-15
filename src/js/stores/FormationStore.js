@@ -33,9 +33,7 @@ function getStatisticsForOneSeason(action) {
 let FormationStore = assign({}, BaseStore, {
 
   getData() {
-    return {
-      goals: _data
-    };
+    return _data;
   }
 });
 

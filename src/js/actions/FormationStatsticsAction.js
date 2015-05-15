@@ -1,9 +1,5 @@
 var Constants = require('../constants/AppConstants');
-var SeasonsConstant = require('../constants/SeasonsInfo');
-var TeamConstant = require('../constants/TeamInfo');
 var StatisticsHelper = require('../helpers/StatisticsHelper');
-var AppDispatcher = require('../dispatchers/AppDispatcher');
-var YqlHelper = require('../helpers/YqlHelper');
 
 module.exports = {
   getFormations: function (params) {

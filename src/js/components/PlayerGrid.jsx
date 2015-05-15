@@ -2,7 +2,6 @@ const React = require('react');
 const Grid = require('react-bootstrap/lib/Grid');
 const Row = require('react-bootstrap/lib/Row');
 const Col = require('react-bootstrap/lib/Col');
-const Jumbotron = require('react-bootstrap/lib/Jumbotron');
 const Panel = require('react-bootstrap/lib/Panel');
 const Player = require('./Player.jsx');
 const PlayerStore = require('../stores/PlayerStore');

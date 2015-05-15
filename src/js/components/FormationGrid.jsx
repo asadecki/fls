@@ -1,17 +1,13 @@
 const React = require('react');
-const Grid = require('react-bootstrap/lib/Grid');
-const Row = require('react-bootstrap/lib/Row');
-const Col = require('react-bootstrap/lib/Col');
-const Jumbotron = require('react-bootstrap/lib/Jumbotron');
-const Panel = require('react-bootstrap/lib/Panel');
-const Player = require('./Player.jsx');
+const Chart = require('chart.js');
 const FormationStore = require('../stores/FormationStore');
+const FormationGoals = require('../templates/FormationGoals');
 
 let FormationGrid = React.createClass({
 
   getInitialState() {
     return {
-      x: []
+      goals: []
     }
   },
 
@@ -24,9 +20,31 @@ let FormationGrid = React.createClass({
   },
 
   render() {
+    console.log("FormationGrid#render");
     return (
-      <div>xxx</div>
+      <canvas id="myChart" width="400" height="400"></canvas>
     );
+  },
+
+  componentDidUpdate() {
+    console.log("FormationGrid#componentDidUpdate");
+
+    let goals = this.state;
+
+    console.log(goals);
+    console.log(goals.center);
+    console.log(goals.defence);
+    console.log(goals.wings);
+    var data = FormationGoals.Data;
+
+    data[0].value = goals.defence;
+    data[1].value = goals.center;
+    data[2].value = goals.wings;
+
+    console.log(data);
+
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myNewChart = new Chart(ctx).Pie(data);
   }
 });
 

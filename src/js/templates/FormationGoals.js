@@ -11,13 +11,13 @@ module.exports = {
       value: 0,
       color: "#46BFBD",
       highlight: "#5AD3D1",
-      label: "Green"
+      label: "Center"
     },
     {
       value: 0,
       color: "#FDB45C",
       highlight: "#FFC870",
-      label: "Yellow"
+      label: "Wings"
     }
   ]
 };
