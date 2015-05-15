@@ -7,11 +7,13 @@ var YqlHelper = require('../helpers/YqlHelper');
 
 module.exports = {
   getFormations: function (params) {
-    if (params.seasonName === 'forever') {
-    } else {
-      params.seasonNiceName = SeasonsConstant.Seasons[params.seasonName].SEASON_NICE_NAME;
-      params.actionType = Constants.ActionTypes.GET_SEASON_FORMATION_STATISTICS;
-      StatisticsHelper.doGetPlayers(params);
-    }
+    console.log('FormationStatisticAction#getFormations');
+
+    var params = {
+      seasonName: "seasonSpring2015",
+      actionType: Constants.ActionTypes.GET_SEASON_FORMATION_STATISTICS
+    };
+
+    StatisticsHelper.doGetPlayers(params);
   }
 };

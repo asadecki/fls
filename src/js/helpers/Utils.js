@@ -1,4 +1,6 @@
 var Constants = require('../constants/AppConstants');
+var Formations = require('../constants/Formations');
+
 
 module.exports = {
 
@@ -31,5 +33,15 @@ module.exports = {
 
       return player;
     });
+  },
+
+  getFormation: function (playerName) {
+    if (Formations.Defence.indexOf(playerName) !== -1) {
+      return "defence";
+    } else if (Formations.Center.indexOf(playerName) !== -1) {
+      return "center";
+    } else if (Formations.Wings.indexOf(playerName) !== -1) {
+      return "wings";
+    }
   }
 };

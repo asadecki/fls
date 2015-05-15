@@ -3,14 +3,17 @@ const Grid = require('react-bootstrap/lib/Grid');
 const Row = require('react-bootstrap/lib/Row');
 const Col = require('react-bootstrap/lib/Col');
 const MenuChoiceAction = require('../../actions/MenuChoiceAction');
-
+const FormationStatsticsAction = require('../../actions/FormationStatsticsAction');
 
 let StatisticTypeMenu = React.createClass({
 
   handleClick() {
-    console.log('adssadasd');
     var type = event.target.parentElement.parentElement.getAttribute('data-menu-type');
     MenuChoiceAction.setMenuType(type);
+
+    if (type === 'team') {
+      FormationStatsticsAction.getFormations();
+    }
   },
 
   render() {

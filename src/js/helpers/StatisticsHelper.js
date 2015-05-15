@@ -10,12 +10,8 @@ var Chart = require('chart.js');
 module.exports = {
 
   doGetPlayers: function (params) {
-
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var data = {};  
-    var myNewChart = new Chart(ctx).PolarArea(data);
-    console.log('sss');
-    console.log(myNewChart);
+    console.log("StatisticsHelper#doGetPlayers");
+    console.log(params);
     $.ajax({
       traditional: true,
       url: YqlHelper.prepareYahooUrl(params.seasonName),

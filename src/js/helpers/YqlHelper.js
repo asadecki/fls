@@ -11,6 +11,8 @@ var YAHOO_URL_TEMPLATE = "https://query.yahooapis.com/v1/public/yql?" +
 module.exports = {
 
   prepareYahooUrl: function (seasonName) {
+    console.log("YqlHelper#prepareYahooUrl");
+    console.log(seasonName);
     return YAHOO_URL_TEMPLATE
       .replace("SEASON_ID", SeasonsConstant.Seasons[seasonName].SEASON_ID)
       .replace("SEASON_NAME", SeasonsConstant.Seasons[seasonName].SEASON_NAME)

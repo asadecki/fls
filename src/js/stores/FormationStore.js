@@ -4,20 +4,29 @@ const Utils = require('../helpers/Utils');
 const BaseStore = require('./BaseStore');
 const assign = require('object-assign');
 
-let _data = {
-  defence: {},
-  centralMidfielder: {},
-  wingers: {}
-};
+let _data = {};
 
 function getStatisticsForOneSeason(action) {
   let seasonName = action.seasonName;
   let players = action.players;
-  console.log('xxx');
-  console.log(action);
-  console.log('xxx');
 
-  FormationStore.setStatisticInfo(statisticName, seasonName);
+  console.log("FormationStore");
+  console.log(players);
+
+  var goals = {
+    defence: 0,
+    center: 0,
+    wings: 0
+  };
+
+  players.forEach(function (player) {
+    var formation = Utils.getFormation(player.name);
+    goals[formation] += player.goals;
+  });
+
+  _data = goals;
+  console.log(goals);
+
   FormationStore.emitChange();
 }
 
@@ -25,13 +34,8 @@ let FormationStore = assign({}, BaseStore, {
 
   getData() {
     return {
-      x: [1, 2, 3]
+      goals: _data
     };
-  },
-
-  setStatisticInfo(statisticName, seasonName) {
-    //_data.statisticTitle = "Most " + statisticName + " of " + (seasonName ? seasonName : "ages");
-    _data.statisticTitle = "set me pls";
   }
 });
 
