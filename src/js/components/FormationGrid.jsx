@@ -1,7 +1,9 @@
 const React = require('react');
 const Chart = require('chart.js');
 const FormationStore = require('../stores/FormationStore');
-const FormationGoals = require('../templates/FormationGoals');
+const Grid = require('react-bootstrap/lib/Grid');
+const Row = require('react-bootstrap/lib/Row');
+const Col = require('react-bootstrap/lib/Col');
 
 let FormationGrid = React.createClass({
 
@@ -22,29 +24,31 @@ let FormationGrid = React.createClass({
   render() {
     console.log("FormationGrid#render");
     return (
-      <canvas id="myChart" width="400" height="400"></canvas>
+    <Row className='show-grid'>
+      <Col xs={6} md={4}><canvas id="chartGoals" width="300" height="300"></canvas></Col>
+      <Col xs={6} md={4}><canvas id="chartAssists" width="300" height="300"></canvas></Col>
+      <Col xs={6} md={4}><canvas id="chartBoth" width="300" height="300"></canvas></Col>
+    </Row>
     );
   },
 
   componentDidUpdate() {
+    // TODO move it somewhere. No more copy-paste
     console.log("FormationGrid#componentDidUpdate");
 
-    let goals = this.state;
+    let stats = this.state;
+    let goals = stats.goals;
+    let assists = stats.assists;
+    let both = stats.both;
 
-    console.log(goals);
-    console.log(goals.center);
-    console.log(goals.defence);
-    console.log(goals.wings);
-    var data = FormationGoals.Data;
+    var ctx1 = document.getElementById("chartGoals").getContext("2d");
+    var myNewChart1 = new Chart(ctx1).Pie(goals);
 
-    data[0].value = goals.defence;
-    data[1].value = goals.center;
-    data[2].value = goals.wings;
+    var ctx2 = document.getElementById("chartAssists").getContext("2d");
+    var myNewChart2 = new Chart(ctx2).Pie(assists);
 
-    console.log(data);
-
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var myNewChart = new Chart(ctx).Pie(data);
+    var ctx3 = document.getElementById("chartBoth").getContext("2d");
+    var myNewChart3 = new Chart(ctx3).Pie(both);
   }
 });
 
